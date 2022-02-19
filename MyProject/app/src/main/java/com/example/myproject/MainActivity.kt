@@ -2,33 +2,69 @@ package com.example.myproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import java.sql.Time
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.core.text.isDigitsOnly
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val circle = Circle("circle", "red", 3.0)
-//        circle.perimeter()
-//        circle.square()
-//
-//        val triangle = Triangle("triangle", "blue", 3, 4, 5, 3)
-//        triangle.perimeter()
-//        triangle.square()
-//
-//        val rectangle = Rectangle("rectangle", "yellow", 2, 3)
-//        rectangle.perimeter()
-//        rectangle.square()
-//
-//
-//
+        var result = findViewById<TextView>(R.id.tvResult)
+        var firstNumber = findViewById<EditText>(R.id.firstNumber)
+        var sign = findViewById<EditText>(R.id.sign)
+        var secondNumber = findViewById<EditText>(R.id.secondNumber)
+        var buttonResult = findViewById<Button>(R.id.button)
 
-        val time = Timer(5, 30, 25)
-        time.getTime()
-        time.setHours()
-        time.setMinutes()
-        time.setSeconds()
 
+        buttonResult.setOnClickListener {
+
+
+            var enteredNumberOne =
+            if (firstNumber.text.toString().isNotEmpty()) {
+                firstNumber.text.toString().toDouble()
+            } else {
+                0.0
+            }
+
+            var enteredNumberTwo =
+                if (secondNumber.text.toString().isNotEmpty()) {
+                    secondNumber.text.toString().toDouble()
+                } else {
+                    0.0
+                }
+
+
+            var enteredSign = sign.text.toString()
+
+            when (enteredSign) {
+                "+" -> {
+                    result.text = (enteredNumberOne + enteredNumberTwo).toString()
+                }
+                "-" -> {
+                    result.text = (enteredNumberOne - enteredNumberTwo).toString()
+                }
+                "*" -> {
+                    result.text = (enteredNumberOne * enteredNumberTwo).toString()
+                }
+                "/" -> {
+                    if (enteredNumberTwo !== 0.0) {
+                        result.text = (enteredNumberOne / enteredNumberTwo).toString()
+                    } else {
+                        result.text = "На 0 делить нельзя"
+                    }
+                }
+                else -> result.text = "Неверный знак"
+            }
+        }
     }
 }
+
+
+

@@ -16,15 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var result = findViewById<TextView>(R.id.tvResult)
+        var resultTV = findViewById<TextView>(R.id.tvResult)
         var firstNumber = findViewById<EditText>(R.id.firstNumber)
         var sign = findViewById<EditText>(R.id.sign)
         var secondNumber = findViewById<EditText>(R.id.secondNumber)
         var buttonResult = findViewById<Button>(R.id.button)
 
-
         buttonResult.setOnClickListener {
-
 
             var enteredNumberOne =
             if (firstNumber.text.toString().isNotEmpty()) {
@@ -40,27 +38,26 @@ class MainActivity : AppCompatActivity() {
                     0.0
                 }
 
-
             var enteredSign = sign.text.toString()
 
             when (enteredSign) {
                 "+" -> {
-                    result.text = (enteredNumberOne + enteredNumberTwo).toString()
+                    resultTV.text = (enteredNumberOne + enteredNumberTwo).toString()
                 }
                 "-" -> {
-                    result.text = (enteredNumberOne - enteredNumberTwo).toString()
+                    resultTV.text = (enteredNumberOne - enteredNumberTwo).toString()
                 }
                 "*" -> {
-                    result.text = (enteredNumberOne * enteredNumberTwo).toString()
+                    resultTV.text = (enteredNumberOne * enteredNumberTwo).toString()
                 }
                 "/" -> {
                     if (enteredNumberTwo !== 0.0) {
-                        result.text = (enteredNumberOne / enteredNumberTwo).toString()
+                        resultTV.text = (enteredNumberOne / enteredNumberTwo).toString()
                     } else {
-                        result.text = "На 0 делить нельзя"
+                        resultTV.text = "На 0 делить нельзя"
                     }
                 }
-                else -> result.text = "Неверный знак"
+                else -> resultTV.text = "Неверный знак"
             }
         }
     }
